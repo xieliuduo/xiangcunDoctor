@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+    <title>扶贫申请</title>
+</head>
+
+<body>
+    <div class="container ms-controller" ms-controller="add_help_poor">
+        <div class="header">
+            <a class="link-back link-l" href="help_poor_list.html"></a>
+            <span class="title">扶贫申请</span>
+        </div>
+        <div class="header-div"></div>
+        <!--输入框-->
+        <div class="help-poor">
+            <ul class="help-poor-list">
+                <li>
+                    <span class="l">申请日期</span>
+                    <!-- <span class="r"><input type="text" value="2017-03-10" /></span> -->
+                    <span class="r"><input type="text" ms-duplex="@date" readonly="true" /></span>
+                </li>
+                <li class="pl2">
+                    <span class="l">姓名</span>
+                    <span class="r"><input type="text" placeholder="请输入姓名" ms-duplex="@name" id="name" maxlength="15" /></span>
+                </li>
+                <li class="pl2">
+                    <span class="l">性别</span>
+                    <span class="r">
+                        <label><input class="u" type="radio" name="sex" ms-duplex="@gender" value="M">男</label>
+                        <label><input class="u" type="radio" name="sex" ms-duplex="@gender" value="F">女</label>
+                    </span>
+                </li>
+                <li class="pl3">
+                    <span class="l">手机号</span>
+                    <span class="r"><input type="tel" placeholder="请输入手机号" ms-duplex="@phone" id="phone" /></span>
+                </li>
+            </ul>
+            <div class="id-card">
+                <div class="item">
+                    <a class="btn-id-card" id="id_card_z_upload">
+                        <div class="con">
+                            <!-- <img ms-attr="{src:@id_card_front?@id_card_front:'images/btn_id_z.png'}" alt="身份证正面示例" /> -->
+                            <img ms-attr="{src:@id_card_front?'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+@id_card_front+'?x-oss-process=image/resize,m_pad,h_200,w_350':'images/btn_id_z.png'}" alt="身份证正面示例" />                            
+                        </div>
+                    </a>
+                    <p>上传身份证正面</p>
+                </div>
+                <div class="item">
+                    <a class="btn-id-card" id="id_card_f_upload">
+                        <div class="con">
+                            <img ms-attr="{src:@id_card_back?'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+@id_card_back+'?x-oss-process=image/resize,m_pad,h_200,w_350':'images/btn_id_f.png'}" alt="身份证正面示例" /> 
+                        </div>
+                    </a>
+                    <p>上传身份证反面</p>
+                </div>
+            </div>
+        </div>
+        <!--家庭年收入-->
+        <div class="help-poor">
+            <ul class="help-poor-list">
+                <li class="pl5">
+                    <span class="l">家庭年收入</span>
+                    <span class="r"><input type="tel" placeholder="请输入家庭年收入（元）" ms-duplex="@family_annual_income" id="family_annual_income" /></span>
+                </li>
+            </ul>
+        </div>
+        <!--描述-->
+        <div class="help-poor">
+            <div class="item-txt">
+               <span class="t">致贫原因（不超过20字）</span>
+               <div class="con">
+                   <textarea placeholder="请简要写出家庭贫困的原因" ms-duplex="@poverty_reasons" id="poverty_reasons" maxlength="20" ms-keyup="@textareaKeyup('poverty_reasons')"></textarea>
+                   <span class="count">{{@poverty_reasons_count}}/20</span>
+               </div>                
+            </div>
+            <div class="item-txt">
+               <span class="t">家庭情况描述（不超过50字）</span>
+               <div class="con">
+                   <textarea placeholder="请简要描述家庭情况" ms-duplex="@family_desc" id="family_desc" maxlength="50" ms-keyup="@textareaKeyup('family_desc')"></textarea>
+                   <span class="count">{{@family_desc_count}}/50</span>
+               </div>                
+            </div>
+            <div class="item-txt">
+               <span class="t">救助需求描述（不超过50字）</span>
+               <div class="con">
+                   <textarea placeholder="请简要描述救助需求" ms-duplex="@help_desc" id="help_desc" maxlength="50" ms-keyup="@textareaKeyup('help_desc')"></textarea>
+                   <span class="count">{{@help_desc_count}}/50</span>
+               </div>                
+            </div>
+        </div>
+        <!--八张图片-->
+        <div class="poor-photo">
+            <span class="t">图片（不超过8张）</span>
+            <ul class="photo-list" ms-html="@pictures_html">
+            </ul>
+            <ul class="photo-list">
+                <li><a id="img_upload"><img src="images/btn_add_photo.png" alt=""></a></li>
+                <!-- <li><a><img src="images/btn_add_photo.png" alt=""></a></li>
+                <li><a><img src="images/btn_add_photo.png" alt=""></a></li>
+                <li><a><img src="images/btn_add_photo.png" alt=""></a></li> -->
+            </ul>
+        </div>
+        <a class="btn btn-block" ms-click="@addHelpPoor">提交</a>
+    </div>
+    <!-- <script src="js/zepto.min.js"></script> -->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/plupload/js/plupload.full.min.js"></script>
+    <script src="js/add_help_poor.js"></script>
+    <script src="js/add_help_poor_img.js?v=1.0"></script>
+    <script>        
+        $(function(){
+            if(xs_utils.isiOS()){
+                //如果是ios，动态改变样式
+                $(".help-poor li").css({
+                    "padding-bottom":".6rem"
+                });
+                $(".help-poor li .r [type='text'],.help-poor li .r [type='tel']").css({
+                    "margin":"-.2rem 0 0 0"
+                });
+                
+            }
+        });
+    </script>
+    <script>
+    $.fn.pasteEvents = function(delay) {
+        if (delay == undefined) delay = 10;
+        return $(this).each(function() {
+            var $el = $(this);
+            $el.on("paste", function() {
+                $el.trigger("prepaste");
+                setTimeout(function() {
+                    $el.trigger("postpaste");
+                }, delay);
+            });
+        });
+    };
+
+    function textareaPaste(id){
+        console.log("粘贴");
+        switch(id){
+            case "poverty_reasons":
+            add_help_poor.poverty_reasons_count = add_help_poor.poverty_reasons.replace(/\s/g,"").length;
+            if(add_help_poor.poverty_reasons_count>=20){
+             add_help_poor.poverty_reasons_count = 20;
+             add_help_poor.poverty_reasons = add_help_poor.poverty_reasons.substring(0,20);
+            }
+            break;
+            case "family_desc":
+            add_help_poor.family_desc_count = add_help_poor.family_desc.replace(/\s/g,"").length;
+            if(add_help_poor.family_desc_count>=50){
+             add_help_poor.family_desc_count = 50;
+             add_help_poor.family_desc = add_help_poor.family_desc.substring(0,50);
+            }
+            break;
+            case "help_desc":
+            add_help_poor.help_desc_count = add_help_poor.help_desc.replace(/\s/g,"").length;
+            if(add_help_poor.help_desc_count>=50){
+             add_help_poor.help_desc_count = 50;
+             add_help_poor.help_desc = add_help_poor.help_desc.substring(0,50);
+            }
+            break;
+        }
+    }
+
+    $("#poverty_reasons").on("postpaste",function(){textareaPaste("poverty_reasons")}).pasteEvents();
+    $("#family_desc").on("postpaste",function(){textareaPaste("family_desc")}).pasteEvents();
+    $("#help_desc").on("postpaste",function(){textareaPaste("help_desc")}).pasteEvents();
+    </script>
+</body>
+
+</html>

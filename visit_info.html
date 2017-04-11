@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+    
+    <title>随访详情</title>
+</head>
+
+<body>
+    <div class="container addVisit ms-controller" ms-controller="visit_info" >
+        <div class="header">
+            <a class="link-back link-l" href="diag_visit.html"></a>
+            <span class="title">随访详情</span>
+            <!-- <a class="link-r link-txt"><span style="font-size: 0.8rem">保存</span></a> -->
+        </div>
+        <div class="header-div"></div>
+        <div class="wrap one_patient">
+            <ul class="one_patient-list">
+                <li class="box item">
+                    <span class="l">服务对象</span>
+                    <span class="r">{{@name}}</span>
+                </li>
+                <li class="box item">
+                    <span class="l">服务时间</span>
+                    <span class="r">{{@date}}</span>
+                </li>
+                <li class="box item">
+                    <span class="l">服务类型</span>
+                    <span class="r">
+                       {{@service_type}}
+                    </span>
+                </li>
+            </ul>
+            <ul class="add-record"> 
+                <li>
+                    <span class="l">当前心率(bpm)</span>
+                    <span class="r ">{{@heart_rate}}</span>
+                </li>
+                <li>
+                    <span class="l">当前血压(mmhg)</span>
+                    <span class="r ">{{@systolic_pressure}}/{{@diastolic_pressure}}</span>
+                </li>
+                <li>
+                    <span class="l">当前血糖(mmol/L)</span>
+                    <span class="r ">{{@blood_sugar}}</span>
+                </li>
+            </ul>
+            <div class="box item-txt">
+                <span class="t">疾病描述</span>
+                <div class="con">
+                    <textarea ms-duplex="@describe" disabled placeholder="无特殊"></textarea>
+                    <!-- <span class="count">0/200</span> -->
+                </div>
+            </div>
+            <div class="box item-txt">
+                <span class="t">知道建议</span>
+                <div class="con">
+                    <textarea ms-duplex="@guide" disabled placeholder="无特殊"></textarea>
+                   <!--  <span class="count">0/500</span> -->
+                </div>
+            </div>
+            <div class="box item-txt">
+                <span class="t">开药记录</span>
+                <div class="con">
+                    <textarea ms-duplex="@drug_record" disabled placeholder="无特殊">sabefteoibcpyr</textarea>
+                   <!--  <span class="count">0/500</span> -->
+                </div>
+            </div>
+            <!--    就诊记录 -->
+           
+              
+        </div>
+        <!-- warp -->
+    </div>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/xs_utils.js "></script>
+    <script src="js/avalon.modern.min.js "></script>
+    <script src="js/visitInfo.js"></script>
+
+</body>
+
+</html>

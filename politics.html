@@ -1,0 +1,88 @@
+<!doctype html>
+<html class="auto-height">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+    <title>政治资讯</title>
+</head>
+
+<body class="auto-height">
+    <div class="container ms-controller" ms-controller="politics">
+        <div class="header nobd">
+            <a class="link-back link-l" href="index.html"></a>
+            <div class="tab-btn">
+                <a ms-for="(index,el) in @conList" ms-click="@getArticleList(el.id)" ms-class="[(index==0?'curr':'')]"><span>{{el.name}}</span></a>
+            </div>
+        </div>
+        <div class="header-div"></div>
+        <!-- Swiper -->
+        <div class="swiper swiper-ppt" ms-visible="@showCarousel">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" ms-for="(index,el) in @carouselList">
+                        <a ms-attr="{href:'politics_article.html?id='+el.article_id}">
+                            <img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+el.image_url}" />
+                            <p class="t">{{el.title}}</p>
+                        </a>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        
+        <div class="wrap">
+            <!--国家政策-->
+            <div class="box politics-index">
+                <ul class="article-list show">
+                    <li ms-for="(index,el) in @articleList">
+                        <a ms-attr="{href:'politics_article.html?id='+el.id}">
+                            <img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+el.thumbnail}" onerror="nofind();" />
+                            <h3>{{el.title}}</h3>
+                            <span class="time">{{el.created_at.date | truncate(10,'')}}</span>
+                            <span class="view">浏览{{el.view_count}}次</span>
+                        </a>
+                    </li>
+                </ul>
+                  <!--加载中动画-->
+                  <div class="spinner" ms-visible="@loadingFlash">
+                      <div class="bounce1"></div>
+                      <div class="bounce2"></div>
+                      <div class="bounce3"></div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/swiper-3.3.1.min.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/politics.js"></script>
+    <script>
+        $(function(){
+
+            $(".tab-btn").on("tap","a",function(){
+                var index = $(this).index();
+                $(this).addClass('curr').siblings().removeClass('curr');
+            });
+
+        });
+    </script>
+    <script>
+        function nofind() {
+            var img = event.srcElement;
+            img.src = "./images/img_default.jpg";
+            img.onerror = null;
+        }
+    </script>
+</body>
+
+</html>

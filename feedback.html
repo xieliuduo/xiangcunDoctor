@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css?v=1.5" />
+    <title>反馈建议</title>
+</head>
+
+<body>
+    <div class="container ms-controller" ms-controller="feedback">
+        <div class="header">
+            <a class="link-back link-l" href="u_center.html"></a>
+            <span class="title">反馈建议</span>
+        </div>
+        <div class="header-div"></div>
+        <div class="wrap feedback">
+            <div class="box">
+                <p><span>标题</span>
+                    <input type="text" placeholder="请输入标题内容" ms-duplex="@tit" maxlength="20" />
+                </p>
+            </div>
+            <div class="box feedback-con">
+                <span class="tip" ms-visible="@showTips">请输入正文内容 {{@test}}</span>
+                <span class="txt">{{@count}}/500</span>
+                <textarea ms-focus="@textareaOnFocus" ms-blur="@textareaOnBlur" ms-duplex="@txt" ms-keyup="@textareaKeyup" maxlength="500"></textarea>
+            </div>
+            <div class="btn btn-block" ms-click="@sendFeedback">提交</div>
+        </div>
+    </div>
+    <!-- <script src="js/zepto.min.js"></script> -->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/feedback.js?v=1.4"></script>
+    <script>
+    $.fn.pasteEvents = function(delay) {
+        if (delay == undefined) delay = 10;
+        return $(this).each(function() {
+            var $el = $(this);
+            $el.on("paste", function() {
+                $el.trigger("prepaste");
+                setTimeout(function() {
+                    $el.trigger("postpaste");
+                }, delay);
+            });
+        });
+    };
+
+    $("textarea").on("postpaste", function() {
+        feedback.count = feedback.txt.replace(/\s/g,"").length;
+       if(feedback.count>=500){
+         feedback.txt = feedback.txt.substring(0,500);
+         feedback.count = 500;
+       }
+    }).pasteEvents();
+    </script>
+</body>
+
+</html>

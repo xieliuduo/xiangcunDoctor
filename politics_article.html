@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+    <title>政治资讯详情</title>
+</head>
+
+<body>
+    <div class="container ms-controller" ms-controller="article">
+        <div class="header">
+            <a class="link-back link-l" ms-click="@goBack"></a>
+            <!-- <a class="link-r link-share" ms-on-tap="@toShare"></a> -->
+        </div>
+        <div class="header-div"></div>
+        <div class="wrap">
+            <!--加载中动画-->
+            <div class="spinner" ms-visible="@loadingFlash">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="box politics" ms-visible="@showInfo">
+                    <h1>{{@articleInfo.title}}</h1>
+                    <div class="article-info clearfix">
+                        <span>{{@articleInfo.author}}</span>
+                        <span class="time">{{@date | truncate(10,'')}}</span>
+                    </div>
+                    <div class="article-con" ms-html="@articleInfo.content">
+                        <!-- <img src="images/article_img.jpg" />
+                        <p>2月23日，由中华思源工程扶贫基金会、北京天使妈妈慈善基金会主办的“思源天使妈妈‘新肝宝贝’媒体汇报会暨建议2017年将器官移植纳入医保的全国‘两会’提案研讨会”在北京举行。全国政协常委、民建中央副主席兼秘书长吴晓青，全国政协委员、民建中央常委、中华思源工程扶贫基金会副理事长兼秘书长、林达集团董事局主席李晓林，全国政协委员、民建中央调研部部长蔡玲，全国政协委员、中华思源工程扶贫基金会副理事长、北京帝恒投资集团董事长曾钫，全国政协委员、北大医院原副院长丁洁，中华思源工程扶贫基金会常务副秘书长陶鸣以及来自器官移植领域的医疗专家、新闻媒体等人员出席本次会议，就将器官移植纳入医保的全国“两会”建议内容进行了讨论。</p>
+                        <p>国政协委员、民建中央调研部部长蔡玲，全国政协委员、中华思源工程扶贫基金会副理事长、北京帝恒投资集团董事长曾钫，全国政协委员、北大医院原副</p> -->
+                        <!-- {{@articleInfo.content}} -->
+                    </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/politics_article.js"></script>
+</body>
+
+</html>

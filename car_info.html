@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+    <title>车辆信息</title>
+</head>
+
+<body>
+    <div class="container ms-controller" ms-controller="car">
+        <div class="header">
+            <a class="link-back link-l" href="index.html"></a>
+            <span class="title">车辆信息</span>
+        </div>
+        <div class="header-div"></div>
+        <div class="wrap">
+            <!--加载中动画-->
+            <div class="spinner" ms-visible="@loadingFlash">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+            <div class="noData-box" ms-visible="@noInfo"><div class="center">暂无车辆信息</div></div>
+            <div class="box" ms-visible="@showInfo">
+                <h2 class="tit"><span>车辆信息</span></h2>
+                <ul class="car-info-list">
+                    <li><span class="t">车辆编号</span><span class="c">{{@carInfo.no}}</span></li>
+                    <li><span class="t">签收日期</span><span class="c">{{@carInfo.sign_date}}</span></li>
+                    <li><span class="t">车　　型</span><span class="c">{{@carInfo.type}}</span></li>
+                </ul>
+            </div>
+            <div class="box" ms-visible="@showInfo">
+                <h2 class="tit"><span>捐赠者信息</span></h2>
+                <ul class="car-info-list">
+                    <li class="p-info">
+                        <a href="javascript:;">
+                            <img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+@carInfo.avatar+'?x-oss-process=image/circle,r_600'}" onerror="nofind();" alt="捐赠者头像" />
+                            <p>{{@carInfo.name}}</p>
+                            <p class="job">{{@carInfo.intro}}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/car_info.js"></script>
+    <script>
+        function nofind() {
+            var img = event.srcElement;
+            img.src = "./images/img_default.jpg";
+            img.onerror = null;
+        }
+    </script>
+</body>
+
+</html>

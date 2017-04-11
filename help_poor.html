@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <!-- <link rel="stylesheet" href="css/swiper.min.css" /> -->
+    <link rel="stylesheet" href="css/sygoc.css?v=1.0" />
+    <title>扶贫详情</title>
+</head>
+
+<body>
+    <div class="container ms-controller" ms-controller="help_poor">
+        <div class="header">
+            <a class="link-back link-l" href="help_poor_list.html"></a>
+            <span class="title">扶贫详情</span>
+        </div>
+        <div class="header-div"></div>
+        <!--输入框-->
+        <div class="help-poor">
+            <ul class="help-poor-list">
+                <li>
+                    <span class="l">申请日期</span>
+                    <span class="r s">{{@con_date | truncate(10,'')}}</span>
+                </li>
+                <li class="pl2">
+                    <span class="l">姓名</span>
+                    <span class="r s">{{@con.name}}</span>
+                </li>
+                <li class="pl2">
+                    <span class="l">性别</span>
+                    <span class="r s">{{@con.gender=="F"?'女':'男'}}</span>
+                </li>
+                <li class="pl3">
+                    <span class="l">手机号</span>
+                    <span class="r s">{{@con.phone}}</span>
+                </li>
+            </ul>
+            <div class="id-card">
+                <div class="item">
+                    <a class="btn-id-card">
+                        <div class="con">
+                            <img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+@id_card_front+'?x-oss-process=image/resize,m_pad,h_200,w_350'}" alt="身份证正面" />
+                        </div>
+                    </a>
+                    <p>身份证正面</p>
+                </div>
+                <div class="item">
+                    <a class="btn-id-card">
+                        <div class="con">
+                            <img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+@id_card_back+'?x-oss-process=image/resize,m_pad,h_200,w_350'}" alt="身份证反面" />
+                        </div>
+                    </a>
+                    <p>身份证反面</p>
+                </div>
+            </div>
+        </div>
+        <!--家庭年收入-->
+        <div class="help-poor">
+            <ul class="help-poor-list">
+                <li class="pl5">
+                    <span class="l">家庭年收入</span>
+                    <span class="r s">{{@con.family_annual_income}}元</span>
+                </li>
+            </ul>
+        </div>
+        <!--描述-->
+        <div class="help-poor">
+            <div class="item-txt">
+               <span class="t">致贫原因（不超过20字）</span>
+               <div class="con">
+                   <p>{{@con.poverty_reasons}}</p>
+               </div>                
+            </div>
+            <div class="item-txt">
+               <span class="t">家庭情况描述（不超过50字）</span>
+               <div class="con">
+                   <p>{{@con.family_desc}}</p>
+               </div>                
+            </div>
+            <div class="item-txt">
+               <span class="t">救助需求描述（不超过50字）</span>
+               <div class="con">
+                   <p>{{@con.help_desc}}</p>
+               </div>                
+            </div>
+        </div>
+        <!--八张图片-->
+        <div class="poor-photo">
+            <span class="t">图片（不超过8张）</span>
+            <ul class="photo-list">
+                <!-- <li><a><img src="images/img_poor.jpg" alt=""></a></li> -->
+                <li ms-for="(index,el) in @pictures"><a ms-click="@showBigImg(el)"><img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+el+'?x-oss-process=image/resize,m_pad,h_150,w_150,color_46db96'}"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="show-big-img">
+        <img src="" />
+        <!-- Swiper -->
+        <!-- <div class="swiper swiper-ppt">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a>
+                            <img src="images/ppt.jpg" />
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a>
+                            <img src="images/ppt.jpg" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <!-- <script src="js/swiper-3.3.1.min.js"></script> -->
+    <script src="js/xs_utils.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/help_poor.js?v=1.2"></script>
+    <script>        
+        $(function(){
+            if(xs_utils.isiOS()){
+                //如果是ios，动态改变样式
+                $(".help-poor li").css({
+                    "padding-bottom":".6rem"
+                });                
+            }
+        });
+    </script>
+    <script>
+        $(function(){
+            // var swiper = new Swiper('.swiper-container', {
+            //        // pagination: '.swiper-pagination',
+            //         autoplay: 3000, //可选选项，自动滑动
+            //         autoplayDisableOnInteraction: false,
+            //         loop: true
+            //     });
+
+            $(".tab-btn").on("tap","a",function(){
+                var index = $(this).index();
+                $(this).addClass('curr').siblings().removeClass('curr');
+            });
+
+            //图片放大
+            // $(".photo-list").on("tap","a",function(){
+            //     $(".show-big-img").addClass('show');
+            // });
+            $(".show-big-img").on("click",function(){
+                $("body").css("overflow","auto");
+                $(".show-big-img").removeClass('show');
+            });
+            
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+    <!doctype html>
+<html class="auto-height"> 
+
+<head>
+    <meta charset="utf-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+     
+    <title>我的患者</title>
+</head>
+
+<body class="auto-height"> 
+    <div class="container ms-controller" ms-controller="my_patient">
+        <div class="header">
+            <a class="link-back link-l" href="index.html"></a>
+            <span class="title">我的患者</span>
+            <a class="link-r link-add" href="add_patient.html"></a>
+        </div>
+        <div class="header-div"></div>
+        <div class="wrap my_patient" ms-visible="@hasPatient">
+          
+            <div class="box search">
+            <form  action="my_patient.html" ms-submit="@searchPatients" method="get" accept-charset="utf-8">
+              <input id="searchInput" type="text" name="" placeholder="🔍 请搜索患者姓名" ms-duplex="@searchText">
+            </form>
+               
+            </div>
+            
+            <ul class="patient-info-list">
+                <li ms-for="(index,el) in @patients">
+                <a ms-attr="{href:'patient_info.html?p_id='+el.id}" title=""> 
+               <!--  <img ms-attr="{src:el.avatar?el.avatar:'images/img_photo.png'}"  /> -->
+                <img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+el.avatar+'?x-oss-process=image/circle,r_600'}" alt="用户头像" onerror="nofind();" />
+                <p><span class="p-name">{{el.name}}　　　</span>　 　{{el.gender=='M'?'男':'女'}}　{{el.age}}岁</p> </a>
+                </li>
+               <!--   <li>
+                <a href="" title=""> <img src="images/img_photo.png" alt="用户头像" /><p>张晓宇　💁 女　65岁</p> </a>
+                </li> -->
+                <!--  <li>
+                <a href="" title=""> <img src="images/img_photo.png" alt="用户头像" /><p>张晓宇　👱 男　65岁</p> </a>
+                </li>
+                 <li>
+                <a href="" title=""> <img src="images/img_photo.png" alt="用户头像" /><p>张晓宇　💁 女　65岁</p> </a>
+                </li> -->
+               <li ms-visible="@noMore"><div style="text-align: center">没有更多了...</div></li>
+              
+            </ul>
+         
+            
+        </div>
+         <div class="noData-box" ms-visible="!@hasPatient"> 
+              <img src="images/addPatient.png" alt="">
+          </div>  
+        <div class="spinner" ms-visible="@loadingFlash">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+      </div>
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+   <!--  <script src="js/gesture/tap.js"></script> -->
+    <script src="js/my_patient.js"></script>
+</body>
+
+</html>

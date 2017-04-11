@@ -1,0 +1,95 @@
+ <!doctype html>   
+<html class="auto-height">   
+
+<head> 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" /> 
+    <title>就诊随访</title>
+</head>
+
+<body class="auto-height">
+    <div class="container diag-Visit ms-controller" ms-controller="diag_visit">
+        <div class="header">
+            <a class="link-back link-l" href="index.html"></a>
+            <span class="head-tab ">就诊</span><span class="head-tab current">随访</span>
+            <!-- <span class="title">就诊随访</span> -->
+            <a id="addlogo" class="link-r link-add" href="add_visit.html?tab=visit"></a>
+        </div>
+        <div class="header-div"></div>
+        <div class="wrap my_patient">
+            <div class="box search">
+                <form action="my_patient.html" ms-submit="@search" accept-charset="utf-8">
+                    <input id="searchInput" type="text" name="" placeholder="🔍 搜索" ms-duplex="@searchText">
+            </div>
+            </form>
+        </div>
+
+         <ul class="patient-info-list diag-ls">
+
+
+          <!--  就诊列表 -->
+
+           <li ms-for="(index,el) in @patients">
+                <a ms-attr="{href:'visit_info.html?p_id='+el.id}" title="">
+                <!--  <img ms-attr="{src:el.avatar?el.avatar:'images/img_photo.png'}" /> -->
+                  <img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+el.avatar+'?x-oss-process=image/circle,r_600'}" alt="用户头像" onerror="nofind();" />
+                    <p>{{el.name}}　 {{el.gender=='M'?'男':'女'}}　{{el.age}}岁 <span class="time" style="">{{el.service_date}}</span></p>
+                    <span class="disease_desc">{{el.concise}}</span>
+                </a>
+            </li>
+            
+            <li ms-visible="@noMore_p"><div style="text-align: center">没有更多了...</div></li>
+            <div class="noData-box" ms-visible="!@hasPatient"> 
+                  <img src="images/nodaig_new.png" alt="">
+              </div>  
+        </ul>
+        <ul class="patient-info-list visit-ls">
+
+           <!--  随访列表 -->
+
+            <li ms-for="(index,el) in @visiters">
+                <a ms-attr="{href:'visit_info.html?p_id='+el.id}" title="">
+                 <!-- <img ms-attr="{src:el.avatar?el.avatar:'images/img_photo.png'}" /> -->
+                 <img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+el.avatar+'?x-oss-process=image/circle,r_600'}" alt="用户头像" onerror="nofind();" />
+                    <p>{{el.name}}　 {{el.gender=='M'?'男':'女'}}　{{el.age}}岁 <span class="time" style="">{{el.service_date}}</span></p>
+                    <span class="disease_desc">{{el.concise}}</span>
+                </a>
+            </li>
+             <li ms-visible="@noMore_v"><div style="text-align: center">没有更多了...</div></li>
+             <div class="noData-box" ms-visible="!@hasVisiter"> 
+                  <img src="images/novisiter_new.png" alt="">
+              </div>  
+        </ul>
+
+
+
+
+       
+         <div class="spinner" ms-visible="@loadingFlash">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+      </div>
+    </div>
+    <script>
+        function nofind() {
+            var img = event.srcElement;
+            img.src = "./images/img_default.jpg";
+            img.onerror = null;
+        }
+    </script>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/xs_utils.js"></script>
+
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/diagVisit.js"></script>
+</body>
+
+</html>

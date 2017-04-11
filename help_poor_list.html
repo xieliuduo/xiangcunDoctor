@@ -1,0 +1,59 @@
+<!doctype html>
+<html class="auto-height">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+    <title>精准扶贫</title>
+</head>
+
+<body class="auto-height">
+    <div class="container ms-controller" ms-controller="help_poor_list">
+        <div class="header">
+            <a class="link-back link-l" href="index.html"></a>
+            <span class="title">精准扶贫</span>
+            <a class="link-r link-add" href="add_help_poor.html"></a>
+        </div>
+        <div class="header-div"></div>
+        <div class="noData-box" ms-visible="@noData">
+            <img class="add-love" src="images/ico_love.png" alt="快去增加扶贫申请" />
+        </div>
+        <ul class="poor-list">
+            <li ms-for="(index,el) in @list">
+                <a ms-attr="{href:'help_poor.html?id='+el.id}">
+                    <p>状态：<span ms-class="[(el.status=='已完成'?'':el.status=='已申请'?'green':el.status=='处理中'?'red':'')]">{{el.status}}</span></p>
+                    <div class="img-wrap"><img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+el.first_pictures}" onerror="nofind();" /></div>
+                    <p>{{el.name}}　{{el.gender=="F"?"女":"男"}}<!-- 26岁 --></p>
+                    <p>{{el.phone}}</p>
+                    <p class="normal">{{el.poverty_reasons}}</p>
+                    <p class="time">申请日期：{{el.created_at.date | truncate(10,'')}}</p>
+                </a>
+            </li>
+        </ul>
+        <!--加载中动画-->
+      <div class="spinner" ms-visible="@loadingFlash">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+      </div>
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/help_poor_list.js"></script>
+    <script>
+        function nofind() {
+            var img = event.srcElement;
+            img.src = "./images/img_poor_big.jpg";
+            img.onerror = null;
+        }
+    </script>
+</body>
+
+</html>

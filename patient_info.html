@@ -1,0 +1,155 @@
+<!doctype html>   
+<html>
+
+<head>  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+    <style type="text/css" media="screen">
+        
+    </style>
+    <title>患者详情</title>
+</head>
+
+<body>
+    <div class="container ms-controller" ms-controller="patient_info">
+        <div class="header">
+            <a class="link-back link-l"  ms-attr="{href:patient_info.form?patient_info.form:'my_patient.html'}" ></a> 
+            <span class="title">患者详情</span>
+            <a class="link-r link-txt" ms-attr="{href:'patient_edit.html?p_id='+patient_info.p_id}"><span style="font-size: 0.8rem">编辑</span></a>
+        </div>
+        <div class="header-div"></div>
+        <div class="wrap one_patient">
+            <div class="box patient_img">
+                <a href="javascript:;" title="">
+                <img ms-attr="{src:@patient_img?@patient_img:'images/touxiang.png'}" alt="头像" />
+                    <p> 头像</p>
+                </a>
+            </div>
+            <ul class="one_patient-list">
+                <li class="box item"> 
+                    <span class="l">姓名</span>
+                    <span class="r">{{@name}}</span>
+                </li>
+                <li class="box item">
+                    <span class="l">性别</span>
+                    <span class="r">
+                        <label><input class="u" disabled type="radio" value="M" ms-duplex="@sex" name="sex">男</label>
+                        <label><input class="u" disabled type="radio" value="F" ms-duplex="@sex" name="sex">女</label>
+                    </span>
+                </li>
+                <li class="box item">
+                    <span class="l">出生日期</span>
+                    <span class="r">{{@birthday}}</span>
+                </li>
+                <li class="box item">
+                    <span class="l">手机号</span>
+                    <span class="r">{{@mobile}}</span>
+                </li>
+                <li class="box item">
+                    <span class="l">身份证号</span>
+                    <span class="r">{{@id_card}}</span>
+                </li>
+                <li class="box item">
+                    <span class="l">身高(cm)</span>
+                    <span class="r">{{@height}}</span>
+                </li>
+                <li class="box item">
+                    <span class="l">体重(kg)</span>
+                    <span class="r">{{@weight}}</span>
+                </li>
+            </ul>
+            <!--  <div class="box item-txt">
+                <span class="t">既往史</span>
+                <div class="con">
+                    <textarea disabled id="t1" placeholder="无特殊" ms-duplex="@jws"></textarea>
+                   
+                </div>
+            </div> -->
+            <div class="box item-txt">
+                <span class="t">家族史</span>
+                <div class="con">
+                    <textarea disabled placeholder="无特殊" ms-duplex="@jzs"></textarea>
+                   
+                </div>
+            </div>
+            <div class="box item-txt">
+                <span class="t">疾病史</span>
+                <div class="con"> 
+                    <textarea disabled placeholder="无特殊" ms-duplex="@jbs"></textarea>
+                   
+                </div>
+            </div>
+            <!--    就诊记录 -->
+            <div class="box item-txt">
+                <span class="t">就诊记录</span>
+                <div class="record">
+                    <ul class="record-list">
+                        <li ms-for="(index,el) in @serverRecords">
+                            <div class="record-time"><span>{{el.service_date}}</span><img src="images/btn_arrow_gray.png" alt="">
+                            </div>
+                            <div class="record-info-list" style="display: " >
+                                <div>
+                                    <span class="table-l ">心率</span><span>{{el.heart_rate}}</span>
+                                </div>
+                                <div>
+                                    <span class="table-l ">血压</span><span>{{el.systolic_pressure}} / {{el.diastolic_pressure}}</span>
+                                </div>
+                                <div>
+                                    <span class="table-l ">血糖</span><span>{{el.blood_sugar}}</span>
+                                </div>
+                                <div>
+                                    <span class="table-l ">描述病情</span><p>{{el.disease_desc}}</p>
+                                </div>
+                                <div>
+                                    <span class="table-l ">指导建议</span><p>{{el.guide}}</p>
+                                </div>
+                                <div>
+                                    <span class="table-l ">开药记录</span><p>{{el.drug_record}}</p>
+                                </div>
+                            </div>
+                        </li>
+                        
+          <!--               <li>
+                            <div class="record-time"><span>2017-03-10</span><img src="images/btn_arrow_gray.png" alt=""></div>
+                            <div class="record-info-list" >
+                                <div>
+                                    <span class="table-l ">心率</span><span>87bpm</span>
+                                </div>
+                                <div>
+                                    <span class="table-l ">血压</span><span>87bpm</span>
+                                </div>
+                                <div>
+                                    <span class="table-l ">血糖</span><span>87bpm</span>
+                                </div>
+                                <div>
+                                    <span class="table-l ">描述病情</span><span>US福施福哦is恢复is US福施福哦is恢复US福施福哦is恢复is US福施福哦is恢复</span>
+                                </div>
+                                <div>
+                                    <span class="table-l ">指导建议</span><span>US福施福哦is恢复is 欧式福</span>
+                                </div>
+                                <div>
+                                    <span class="table-l ">开药记录</span><span>US福施福哦is恢复is 欧式福</span>
+                                </div>
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <!-- warp -->
+        </div>
+        <!-- warp -->
+    </div>
+    <!-- contaner-->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/xs_utils.js "></script>
+     <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/avalon.modern.min.js "></script>
+    <script src="js/patient_info.js"></script>
+</body>
+
+</html>

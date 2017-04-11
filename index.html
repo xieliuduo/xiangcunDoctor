@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="auto-height">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+    <title>首页</title>
+    <style>
+
+    </style>
+</head>
+
+<body class="auto-height">
+    <div class="container ms-controller" ms-controller="index">
+        <div class="header nobd">
+            <span class="title">乡村医生</span>
+            <a class="link-r link-center" href="u_center.html"></a>
+        </div>
+        <div class="header-div"></div>
+        <div class="banner">
+            <img src="images/banner.jpg" alt="乡村医生" />
+        </div>
+        <div class="wrap">
+            <div class="box lamp">
+                <div id="marquee" class="marquee">
+                    <ul>
+                        <li ms-for="el in @donateList">
+                            <a><span class="name">{{el.name}}</span>
+                            <span class="con">捐赠 {{el.info}} {{el.total}} 辆</span></a>
+                        </li>
+                        <!-- <li><a><span class="name">王狗</span><span class="con">捐赠摩托车100辆，医疗器械200套</span></a></li>
+                        <li><a><span class="name">王7狗</span><span class="con">捐赠摩托车100辆，医疗器械200套</span></a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <!--车辆信息 一键解锁 认证-->
+            <div class="box nav">
+                <div class="item">
+                    <a href="#"><img src="images/moto.jpg" alt="摩托车" /></a>
+                </div>
+                <div class="item">
+                    <a href="car_info.html">
+                        <img src="images/nav_1_d.png" alt="车辆信息" />
+                        <span>车辆信息</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a ms-click="@toggleBtn" id="toggleBtn">
+                        <img ms-visible="!@lock" src="images/nav_2_d.png" alt="一键解锁" />
+                        <span ms-visible="!@lock">一键解锁</span>
+                        <img ms-visible="@lock" src="images/nav_2_a.png" alt="一键锁车" />
+                        <span ms-visible="@lock">一键锁车</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a>
+                        <img ms-visible="@approve=='已认证'" src="images/nav_3_a.png" alt="已认证" />
+                        <span ms-visible="@approve=='已认证'">已认证</span>
+                        <img ms-visible="@approve=='认证中'" src="images/nav_3_d.png" alt="认证中" />
+                        <span ms-visible="@approve=='认证中'">认证中</span>
+                    </a>
+                </div>
+            </div>
+            <!--就诊随访 我的患者 精准扶贫-->
+            <div class="nav-mine">
+                <div class="item">
+                    <a href="diag_visit.html">
+                        <img src="images/btn_jiuzhen.png" alt="就诊/随访" />
+                        <span>就诊/随访</span>
+                    </a>
+                </div>
+                <div class="item item-m">
+                    <a href="my_patient.html">
+                        <img src="images/btn_huanzhe.png" alt="我的患者" />
+                        <span>我的患者</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="help_poor_list.html">
+                        <img src="images/btn_fupin.png" alt="精准扶贫" />
+                        <span>精准扶贫</span>
+                    </a>
+                </div>
+            </div>
+            <!--培训-->
+            <a href="#" class="px">
+                <img src="images/px.jpg" alt="培训" />
+            </a>
+            <!--国家政策-->
+            <div class="box">
+                <h2 class="tit"><span>国家政策</span><a href="politics.html" class="more">更多</a></h2>
+                <ul class="article-list">
+                    <li ms-for="(index,el) in @articleList">
+                        <a ms-attr="{href:'politics_article.html?id='+el.id}">
+                            <img ms-attr="{src:'http://siyuanfund.oss-cn-qingdao.aliyuncs.com/'+el.thumbnail}" onerror="nofind();" />
+                            <h3>{{el.title}}</h3>
+                            <span class="time">{{el.created_at.date | truncate(10,'')}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="js/zepto.min.js"></script> -->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/index.js"></script>
+    <script>        
+        $(function(){
+            if(xs_utils.isiOS()){
+                //如果是ios，动态改变样式
+                $(".lamp").css({
+                    "height":"2rem",
+                });                
+            }else{
+                $(".lamp").css({
+                   "height":"1.9rem",
+                }); 
+            }
+        });
+    </script>
+    <script>
+        function nofind() {
+            var img = event.srcElement;
+            img.src = "./images/img_default.jpg";
+            img.onerror = null;
+        }
+    </script>
+</body>
+
+</html>

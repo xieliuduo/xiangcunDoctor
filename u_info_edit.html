@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+    <title>个人信息</title>
+</head>
+
+<body>
+    <div class="container ms-controller" ms-controller="uinfoedit">
+        <div class="header">
+            <a class="link-back link-l" href="u_info.html"></a>
+            <span class="title">个人信息</span>
+            <a class="link-r link-txt">确认</a>
+        </div>
+        <div class="header-div"></div>
+        <!--加载中动画-->
+        <div class="spinner" ms-visible="@loadingFlash">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+        <div class="u-info" ms-visible="@showInfo">
+            <ul class="u-info-list">
+                <li>
+                    <span class="l">姓　　名</span>
+                    <span class="r"><input type="text" placeholder="请输入姓名" ms-duplex="@u_name" maxlength="15" /></span>
+                </li>
+                <li>
+                    <span class="l">性　　别</span>
+                    <span class="r">
+                        <label><input class="u" type="radio" name="sex" ms-duplex="@u_sex" value="M">男</label>
+                        <label><input class="u" type="radio" name="sex" ms-duplex="@u_sex" value="F">女</label>
+                    </span>
+                </li>
+                <li>
+                    <span class="l">年　　龄</span>
+                    <span class="r"><input type="text" placeholder="请输入年龄" ms-duplex="@u_age" readonly="true" /></span>
+                </li>
+                <li>
+                    <span class="l">手机号码</span>
+                    <span class="r"><input type="tel" placeholder="请输入手机号" ms-duplex="@u_tel" readonly="true" /></span>
+                </li>
+                <li>
+                    <span class="l">身份证号</span>
+                    <span class="r"><input type="text" placeholder="请输入身份证号" ms-duplex="@u_id_card" maxlength="18" ms-blur="@idCardCheck" /></span>
+                </li>
+                <li>
+                    <span class="l">所在地区</span>
+                    <span class="r">
+                        <select class="s3" ms-duplex="@u_province">
+                            <option value="0">省</option>
+                            <option ms-for="el in @province_list" ms-attr="{value:el.id}">{{el.fullname}}</option>
+                        </select>
+                        <select class="s3" ms-duplex="@u_city">
+                            <option value="0">市</option>
+                            <option ms-for="el in @city_list" ms-attr="{value:el.id}">{{el.fullname}}</option>
+                        </select>
+                        <select class="s3" ms-duplex="@u_district" id="quxian">
+                            <option value="0">区县</option>
+                            <option ms-for="el in @district_list" ms-attr="{value:el.id}">{{el.fullname}}</option>
+                        </select>
+                    </span>
+                </li>
+                <li>
+                    <span class="l">详细地址</span>
+                    <span class="r"><input type="text" placeholder="请输入详细地址" ms-duplex="@u_address" /></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/u_info_edit.js"></script>
+    <script>        
+        $(function(){
+            if(xs_utils.isiOS()){
+                //如果是ios，动态改变样式
+                $(".u-info-list li").css({
+                    "padding-bottom":".6rem"
+                });
+                $(".u-info-list li .r [type='text'],.u-info-list li .r [type='tel']").css({
+                    "margin":"-.2rem 0 0 0"
+                });
+                
+            }
+        });
+    </script>
+</body>
+
+</html>

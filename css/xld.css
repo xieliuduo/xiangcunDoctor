@@ -1,0 +1,213 @@
+.my_patient .search{
+    text-align: center;
+}
+.my_patient .search input{
+    display: inline-block;
+        border: none;
+        outline: none;
+         text-align: center;
+         padding: 0.35rem;
+
+}
+.noData-box{
+  display: block;
+  margin: 2rem auto;
+  width:8rem;
+  overflow: hidden;
+  
+}
+.patient-info-list li{
+    overflow: hidden;
+    padding: 0.3rem 0.55rem;
+       background: #ffffff;
+    border-radius: 0.1rem;
+    margin: 0.5rem auto;
+    box-shadow: 0 0 0.325rem 0.1rem rgba(194,194,194,.09);
+}
+.patient-info-list li a{
+  position: relative;
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    background-color: #fff;
+    background: url(../images/btn_arrow_gray.png) no-repeat right center;
+    background-size: 0.45rem;
+}
+.patient-info-list li img{
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    float: left;
+    margin-right: 0.45rem
+}
+
+.patient_img{
+    padding: 0.3rem 0.55rem;
+   overflow: hidden;
+     
+}
+.patient_img .photo_txt{
+  position: relative;
+  top:0.8rem;
+}
+.img_upload{
+position: relative;
+  overflow: hidden;
+ 
+  display: block;
+}
+.patient_img img{
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    float: right;
+    margin-right: 0.45rem
+}
+
+.one_patient-list .item{
+    padding: 0.5rem 0.8rem;
+ 
+    position: relative;
+}
+
+.one_patient-list .item .l{
+   /* position: absolute;
+    left: 0;*/
+}
+.one_patient-list .item .r{
+    /*text-align: right;*/
+    position: absolute;
+    right: 1rem;
+}
+.one_patient-list .item .r input{
+    text-align: right;
+}
+
+.one_patient .item-txt .con{
+    padding: 0 0.5rem;
+}
+.one_patient .item-txt textarea{
+    height: 4rem;
+}
+.one_patient .item-txt .count{
+    right: 0.6rem;
+    bottom: 0.2rem;
+}
+
+.one_patient .record{
+   padding: 0.1rem 0.5rem 1rem;
+
+}
+.one_patient .record-list{
+
+     border: 1px solid #d0cdcd;
+/*     border-right: 1px solid #d0cdcd;
+      border-bottom: 1px solid #d0cdcd;*/
+}
+.one_patient .record-time{
+    position: relative;
+
+    padding:  0.15rem 0.3rem;
+   /* border-top: 1px solid #d0cdcd;*/
+    border-bottom: 1px solid #d0cdcd;
+   
+   /* background-color: red;*/
+}
+.one_patient .record-time img{
+    position: absolute;
+    right: 0.3rem;
+    top:0.3rem;
+   display: inline-block;
+
+   width:  0.45rem;
+   height: 0.7rem;
+}
+
+.one_patient .record-info-list{
+    display: none;
+    border-bottom: 1px solid #d0cdcd;
+    position: relative;
+  
+}
+.one_patient .record-info-list div{
+   display: table;
+   width: 100%;
+}
+.one_patient .record-info-list span{
+    display: table-cell;
+  /*  border: 1px solid red;*/
+}
+.one_patient .record-info-list .table-l{
+    width:5rem;
+}
+
+.diag-Visit .header span{
+  width: 3rem;
+  display: inline-block;
+  line-height: 1.2rem;
+   border: 2px solid #fff;
+   padding: 0;
+   font-size: 0.8rem;
+   /*background-color: #FFFFFF;*/
+}
+.diag-Visit .header .current{
+  color:#46db96;
+  background-color: #FFFFFF;
+}
+.diag-Visit .patient-info-list li{
+
+}
+.diag-Visit .wrap{
+  padding-bottom: 0; 
+}
+.diag-Visit .search{
+  padding-bottom: 0; 
+  margin-top: 0.1rem;
+}
+
+.diag-Visit .patient-info-list li img{
+  margin-top: 0.5rem;
+}
+.diag-Visit .patient-info-list p{
+  line-height: 0.7rem;
+}
+.diag-Visit .patient-info-list .r{
+  float:right;
+  margin-right: 1rem;
+}
+.diag-Visit .patient-info-list .details{
+  color: #808080;
+}
+
+.addVisit .wrap{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.addVisit .add-record{
+    background: #ffffff;
+    margin: 0.5rem auto;
+    padding: 0 0.75rem;
+}
+.addVisit .add-record li{
+  border-bottom: 1px solid #dddddd;
+  padding: 0.6rem 0 0.6rem;
+  position: relative; 
+}
+.addVisit .add-record .r{
+  float: right;
+}
+.addVisit .add-record .r input{
+  text-align: right;
+}
+.addVisit .btn-box{
+  /*width: 80%;*/
+  padding: 0.6rem 2rem;
+}
+
+
+
+
+
+
+

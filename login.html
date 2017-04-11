@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link rel="stylesheet" href="css/sygoc.css" />
+    <title>登录</title>
+</head>
+
+<body>
+    <div class="container ms-controller" ms-controller="login">
+        <div class="header">
+            <span class="title">登录</span>
+        </div>
+        <div class="header-div"></div>
+        <div class="wrap">
+            <div class="box">
+                <form class="form-pwd">
+                    <p><span>手机号码：</span><input type="tel" placeholder="请输入手机号码" ms-duplex="@phone" /></p>
+                    <p><span>登录密码：</span><input type="password" placeholder="请输入登录密码" ms-duplex="@password" /></p>
+                    <a class="btn btn-block" ms-on-tap="@goLogin">登录</a>
+                </form>                
+            </div>
+        </div>
+    </div>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

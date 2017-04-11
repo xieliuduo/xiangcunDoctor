@@ -1,0 +1,8 @@
+avalon移动端事件js包
+gesture文件夹里放的为avalon移动事件相关js 按需引入
+
+https://github.com/RubyLouvre/avalon/tree/master/src/gesture
+
+https://segmentfault.com/a/1190000006012676
+
+注意移动端的事件都只能以ms-on-xxx 或:on-xxx方式绑定。 事件对象里应该有大家想要的属性。

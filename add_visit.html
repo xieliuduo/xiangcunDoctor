@@ -1,0 +1,221 @@
+<!doctype html>    
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" /> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <link href="css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/sygoc.css?v=1.1" />
+    <title>新增随访</title>
+</head>
+
+<body>
+    <div class="container addVisit ms-controller" ms-controller="add_visit">
+        <div class="header">
+            <a class="link-back link-l" href="diag_visit.html"></a>
+            <span class="title">新增随访</span>
+            <!-- <a class="link-r link-txt"><span style="font-size: 0.8rem">保存</span></a> -->
+        </div> 
+        <div class="header-div"></div>
+        <div class="wrap one_patient">
+            <ul class="one_patient-list">
+                <li class="box item">
+                    <span class="l">服务对象</span>
+                    <span class="r"><a id="toSelect" href="selectPatient.html" title=""><input ms-duplex="@name" type="text" ms- placeholder="选择患者" /></a></span>
+                </li>
+                <li class="box item">
+                    <span class="l">服务时间</span>
+                    <span class="r"><input style="color:#7F7F7F" id="appDate" ms-duplex="@date" type="text" value="" /></span>
+                </li>
+                <li class="box item">
+                    <span class="l">服务类型</span>
+                    <span class="r">
+                        <select ms-duplex="@service_type">
+                            <option ms-for="(index,el) in @optionType" ms-attr="{value:index}">{{el}}</option>
+                            
+                        </select>
+                    </span>
+                </li>
+            </ul>
+            <ul class="add-record">
+                <li>
+                    <span class="l">当前心率(bmp)</span>
+                    <!-- <span class="r "><input ms-duplex="@heart_rate" type="number" placeholder="请输入心率" /></span> -->
+                    <span class="r "><select  ms-duplex="@heart_rate"  name="">
+                        <option value="">请输入心率</option>
+                        <option ms-for="(index,el) in @heart_rate_list" ms-attr="{value:el}">{{el}}</option>
+                       
+                        
+                    </select>
+                    </span>
+
+                </li>
+                <li>
+                    <span class="l">当前血压(mmhg)</span>
+                    <span class="r " id="select-box"> 
+                     <!-- 收缩压   120 -->
+                    <select dir="rtl" ms-duplex="@systolic_pressure" placeholder="收缩压(高压)" style="display: inline-block;overflow: hidden;padding-right: 5px;">
+                                <option  value="0">收缩压</option>
+                            <option ms-for="(index,el) in @numList" ms-attr="{value:el}">{{el}}</option>
+                          
+                        </select>
+                    <!-- <span style="margin:0 5px;">/</span> -->
+                    <!-- 舒张压  80 -->
+                        <select ms-duplex="@diastolic_pressure" placeholder="底压" style="display: inline-block;overflow: hidden;padding-left: 10px;"> 
+                             <option  value="0">舒张压</option>
+                             <option ms-for="(index,el) in @numList" ms-attr="{value:el}">{{el}}</option>
+                        </select>
+                        </span>
+                </li>
+                <li>
+                    <span class="l">当前血糖(mmol/L)</span> 
+                  <!--   <span class="r "><input ms-duplex="@blood_sugar" type="number" placeholder="请输入血糖 " /></span> -->
+                     <span class="r "><select  ms-duplex="@blood_sugar"  name="">
+                        <option value="">请输入心率</option>
+                        <option ms-for="(index,el) in @blood_sugar_list" ms-attr="{value:el}">{{el}}</option>
+                       
+                        
+                    </select>
+                    </span>
+                </li>
+                 
+            </ul>
+            <div class="box item-txt">
+                <span class="t">疾病描述</span>
+                <div class="con">
+                    <div class="con">
+                        <textarea ms-focus="@textareaOnFocus" id="textarea1" ms-input="@textareaInput" ms-keyup="@textareaKeyup(1,200)" maxlength="200" ms-duplex="@describe" placeholder="请描述疾病"></textarea>
+                        <span class="count">{{@count1}}/200</span>
+                    </div>
+                </div>
+            </div>
+            <div class="box item-txt">
+                <span class="t">指导建议</span>
+                <div class="con">
+                    <div class="con">
+                        <textarea ms-focus="@textareaOnFocus" id="textarea2"  ms-input="@textareaInput" ms-keyup="@textareaKeyup(2,200)" maxlength="200" ms-duplex="@guide" placeholder="请填写指导建议"></textarea>
+                        <span class="count">{{@count2}}/200</span>
+                    </div>
+                </div>
+            </div>
+            <div class="box item-txt">
+                <span class="t">开药记录</span>
+                <div class="con">
+                    <div class="con">
+                        <textarea ms-focus="@textareaOnFocus"  id="textarea3" ms-input="@textareaInput" ms-keyup="@textareaKeyup(3,200)" maxlength="200" ms-duplex="@drug_record" placeholder="请输入开药信息,如；阿司匹林，每日79mg，每日三次"></textarea>
+                        <span class="count">{{@count3}}/200</span>
+                    </div>
+                </div>
+            </div>
+            <!--    就诊记录 -->
+            <div class="btn-box">
+                <div class="btn btn-block" ms-click="@addVisiter">提交</div>
+            </div>
+        </div>
+        <!-- warp -->
+    </div>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/xs_utils.js"></script>
+    <script src="js/avalon.modern.min.js"></script>
+     <script src="js/layer_mobile/layer.js"></script>
+    <script src="js/plupload/js/plupload.full.min.js"></script> 
+    <script src="./js/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
+    <script src="./js/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
+    <script src="./js/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
+    <script src="./js/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
+    <script src="./js/mobiscroll.android-ics-2.5.2.js" type="text/javascript"></script>
+    <script src="js/addVisit.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        Date.prototype.format = function(partten) {
+                if (partten == null || partten == '') {
+                    partten = 'y-m-d';
+                }
+                var y = this.getYear();
+                var m = this.getMonth() + 1;
+                var d = this.getDate();
+                var r = partten.replace(/y+/gi, y);
+                r = r.replace(/m+/gi, (m < 10 ? "0" : "") + m);
+                r = r.replace(/d+/gi, (d < 10 ? "0" : "") + d);
+                return r;
+            }
+            //调用方式
+
+        console.log((new Date()).format("y-m-d"));
+
+
+
+
+        var curr = new Date();
+        var opt = {};
+        opt.date = {
+            preset: 'date'
+        };
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'bottom', //显示方式 
+            mode: 'scroller', //日期选择模式
+            lang: 'zh',
+            minDate: new Date(1900, 1, 01, 01, 01),
+            maxDate: new Date(),
+            onSelect: function(event, inst) {
+                add_visit.birthday = inst.val;
+                //console.log(inst);
+            }
+        };
+
+        $("#appDate").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+
+
+
+        $.fn.pasteEvents = function(delay) {
+            if (delay == undefined) delay = 10;
+            return $(this).each(function() {
+                var $el = $(this);
+                $el.on("paste", function() {
+                    $el.trigger("prepaste");
+                    setTimeout(function() {
+                        $el.trigger("postpaste");
+                    }, delay);
+                });
+            });
+        };
+
+        $("#textarea1").on("postpaste", function() {
+            add_visit.count1 = add_visit.describe.length;
+            if (add_visit.count1 >= 200) {
+                add_visit.describe = add_visit.describe.substring(0, 200);
+                add_visit.count1 = 200;
+            }
+        }).pasteEvents();
+
+        $("#textarea2").on("postpaste", function() {
+            add_visit.count2 = add_visit.guide.length;
+            if (add_visit.count2 >= 200) {
+                add_visit.guide = add_visit.guide.substring(0, 200);
+                add_visit.count2 = 200;
+            }
+        }).pasteEvents();
+
+        $("#textarea3").on("postpaste", function() {
+            add_visit.count3 = add_visit.drug_record.length;
+            if (add_visit.count3 >= 200) {
+                add_visit.drug_record = add_visit.drug_record.substring(0, 200);
+                add_visit.count3 = 200;
+            }
+        }).pasteEvents();
+
+
+
+
+    });
+    </script>
+</body>
+
+</html>
